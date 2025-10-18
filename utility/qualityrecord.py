@@ -1,0 +1,22 @@
+from handler import db
+
+class QualityRecord(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    wk = db.Column(db.String(50))
+    month = db.Column(db.String(20))
+    dd = db.Column(db.String(20))
+    year = db.Column(db.String(10))
+    date = db.Column(db.String(20))
+    sn = db.Column(db.String(100), index=True)
+    model = db.Column(db.String(50))
+    test_failure_items = db.Column(db.String(200))
+    weight_gap = db.Column(db.String(50))
+    grade = db.Column(db.String(50))
+    line = db.Column(db.String(50))
+    root_cause = db.Column(db.String(200))
+    category = db.Column(db.String(100))
+    risky_station = db.Column(db.String(100))
+    area = db.Column(db.String(100))
+    sampling_case = db.Column(db.String(100))
+    station_al = db.Column(db.String(100))
+    radar_number = db.Column(db.String(100))

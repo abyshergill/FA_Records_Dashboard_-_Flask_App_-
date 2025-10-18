@@ -1,0 +1,164 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<link rel="stylesheet" 
+          href="{{ url_for('static', filename='css/index.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <h2 style="margin-bottom: 1.5rem;">Failure Records Dashboard</h2>
+    
+    <div class="controls">
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search by Serial Number (SN)...">
+        </div>
+        <button class="btn btn-success" onclick="exportData()">Export to CSV</button>
+    </div>
+
+    <div class="filters">
+        <div class="filter-group">
+            <label>Week (WK)</label>
+            <div class="multiselect" data-filter="wk">
+                <div class="multiselect-trigger" onclick="toggleDropdown(this)">
+                    <span class="selected-text">All</span>
+                    <span>▼</span>
+                </div>
+                <div class="multiselect-dropdown"></div>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label>Model</label>
+            <div class="multiselect" data-filter="model">
+                <div class="multiselect-trigger" onclick="toggleDropdown(this)">
+                    <span class="selected-text">All</span>
+                    <span>▼</span>
+                </div>
+                <div class="multiselect-dropdown"></div>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label>Line</label>
+            <div class="multiselect" data-filter="line">
+                <div class="multiselect-trigger" onclick="toggleDropdown(this)">
+                    <span class="selected-text">All</span>
+                    <span>▼</span>
+                </div>
+                <div class="multiselect-dropdown"></div>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label>Root Cause</label>
+            <div class="multiselect" data-filter="root_cause">
+                <div class="multiselect-trigger" onclick="toggleDropdown(this)">
+                    <span class="selected-text">All</span>
+                    <span>▼</span>
+                </div>
+                <div class="multiselect-dropdown"></div>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label>Category</label>
+            <div class="multiselect" data-filter="category">
+                <div class="multiselect-trigger" onclick="toggleDropdown(this)">
+                    <span class="selected-text">All</span>
+                    <span>▼</span>
+                </div>
+                <div class="multiselect-dropdown"></div>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label>Risky Station</label>
+            <div class="multiselect" data-filter="risky_station">
+                <div class="multiselect-trigger" onclick="toggleDropdown(this)">
+                    <span class="selected-text">All</span>
+                    <span>▼</span>
+                </div>
+                <div class="multiselect-dropdown"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts Section -->
+    <div class="charts-section">
+        <div class="chart-card">
+            <h3>Distribution by Selected Category</h3>
+            <div class="chart-selector">
+                <button class="chart-selector-btn active" data-chart="wk">Week</button>
+                <button class="chart-selector-btn" data-chart="model">Model</button>
+                <button class="chart-selector-btn" data-chart="line">Line</button>
+                <button class="chart-selector-btn" data-chart="category">Category</button>
+                <button class="chart-selector-btn" data-chart="risky_station">Risky Station</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="donutChart"></canvas>
+            </div>
+        </div>
+
+        <div class="chart-card">
+            <h3>Record Count by Selected Category</h3>
+            <div class="chart-selector">
+                <button class="chart-selector-btn active" data-chart="wk">Week</button>
+                <button class="chart-selector-btn" data-chart="model">Model</button>
+                <button class="chart-selector-btn" data-chart="line">Line</button>
+                <button class="chart-selector-btn" data-chart="category">Category</button>
+                <button class="chart-selector-btn" data-chart="risky_station">Risky Station</button>
+            </div>
+            <div class="chart-container">
+                <canvas id="barChart"></canvas>
+            </div>
+        </div>
+    </div>
+
+    <h3 style="margin-top: 2rem; margin-bottom: 1rem;">Records Table</h3>
+
+    <div class="table-container">
+        <table id="dataTable">
+            <thead>
+                <tr>
+                    <th>WK</th>
+                    <th>Month</th>
+                    <th>DD</th>
+                    <th>Year</th>
+                    <th>Date</th>
+                    <th>SN</th>
+                    <th>Model</th>
+                    <th>Test Failure Items</th>
+                    <th>Weight Gap</th>
+                    <th>Grade</th>
+                    <th>Line</th>
+                    <th>Root Cause</th>
+                    <th>Category</th>
+                    <th>Risky Station</th>
+                    <th>Area</th>
+                    <th>Sampling Case</th>
+                    <th>Radar Number</th>
+                </tr>
+            </thead>
+            <tbody id="tableBody">
+                <tr>
+                    <td colspan="17" class="loading">Loading data...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+        <button id="prevBtn" onclick="changePage(-1)">Previous</button>
+        <span class="page-info">
+            Page <span id="currentPage">1</span> of <span id="totalPages">1</span>
+        </span>
+        <button id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/chart.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/chart.draw.js') }}"></script>
+{% endblock %}

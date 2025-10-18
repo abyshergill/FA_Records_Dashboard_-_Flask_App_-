@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+{% block extra_styles %}
+<link rel="stylesheet" 
+          href="{{ url_for('static', filename='css/admin.css') }}">
+
+{% endblock %}
+
+{% block content %}
+<div class="card">
+    <div class="admin-header">
+        <h2>Admin Panel - Data Management</h2>
+        <button class="btn btn-primary" onclick="openAddModal()">+ Add New Record</button>
+    </div>
+
+    <div class="search-filter-bar">
+        <input type="text" id="adminSearch" placeholder="Search by Serial Number...">
+        <button class="btn btn-secondary" onclick="loadAdminData()">Search</button>
+    </div>
+
+    <div class="table-container">
+        <table>
+            <thead>
+                <tr>
+                    <th>SN</th>
+                    <th>WK</th>
+                    <th>Date</th>
+                    <th>Model</th>
+                    <th>Grade</th>
+                    <th>Root Cause</th>
+                    <th>Category</th>
+                    <th>Risky Station</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody id="adminTableBody">
+                <tr>
+                    <td colspan="9" class="loading">Loading data...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="pagination">
+        <button id="adminPrevBtn" onclick="changeAdminPage(-1)">Previous</button>
+        <span class="page-info">
+            Page <span id="adminCurrentPage">1</span> of <span id="adminTotalPages">1</span>
+        </span>
+        <button id="adminNextBtn" onclick="changeAdminPage(1)">Next</button>
+    </div>
+</div>
+
+<!-- Add/Edit Modal -->
+<div id="recordModal" class="modal">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3 id="modalTitle">Add New Record</h3>
+            <button class="close-btn" onclick="closeModal()">&times;</button>
+        </div>
+
+        <form id="recordForm" onsubmit="saveRecord(event)">
+            <input type="hidden" id="recordId">
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Week (WK)</label>
+                    <input type="text" id="wk" required>
+                </div>
+                <div class="form-group">
+                    <label>Month</label>
+                    <input type="text" id="month" required>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>DD</label>
+                    <input type="text" id="dd" required>
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    <input type="text" id="year" required>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Date</label>
+                <input type="text" id="date" required>
+            </div>
+
+            <div class="form-group">
+                <label>Serial Number (SN) *</label>
+                <input type="text" id="sn" required>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Model</label>
+                    <input type="text" id="model">
+                </div>
+                <div class="form-group">
+                    <label>Line</label>
+                    <input type="text" id="line">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Test Failure Items</label>
+                <input type="text" id="test_failure_items">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Weight Gap</label>
+                    <input type="text" id="weight_gap">
+                </div>
+                <div class="form-group">
+                    <label>Grade</label>
+                    <input type="text" id="grade">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Root Cause and Effect</label>
+                <input type="text" id="root_cause">
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Category</label>
+                    <input type="text" id="category">
+                </div>
+                <div class="form-group">
+                    <label>Risky Station</label>
+                    <input type="text" id="risky_station">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Area</label>
+                    <input type="text" id="area">
+                </div>
+                <div class="form-group">
+                    <label>Sampling Case</label>
+                    <input type="text" id="sampling_case">
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Station AL</label>
+                    <input type="text" id="station_al">
+                </div>
+                <div class="form-group">
+                    <label>Radar Number</label>
+                    <input type="text" id="radar_number">
+                </div>
+            </div>
+
+            <div style="display: flex; gap: 0.5rem; margin-top: 1.5rem;">
+                <button type="submit" class="btn btn-primary">Save Record</button>
+                <button type="button" class="btn btn-secondary" onclick="closeModal()">Cancel</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div id="alertBox" style="position: fixed; top: 20px; right: 20px; z-index: 2000;"></div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+{% endblock %}

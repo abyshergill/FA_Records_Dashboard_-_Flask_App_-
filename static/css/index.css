@@ -1,0 +1,185 @@
+
+    .controls {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .search-box {
+        position: relative;
+    }
+
+    .filters {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .filter-group {
+        position: relative;
+    }
+
+    .filter-group label {
+        display: block;
+        margin-bottom: 0.3rem;
+        font-weight: 500;
+        font-size: 0.85rem;
+        color: #4a5568;
+    }
+
+    .multiselect {
+        position: relative;
+    }
+
+    .multiselect-trigger {
+        padding: 0.5rem;
+        border: 1px solid #cbd5e0;
+        border-radius: 4px;
+        cursor: pointer;
+        background: white;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .multiselect-trigger:hover {
+        border-color: #667eea;
+    }
+
+    .multiselect-dropdown {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background: white;
+        border: 1px solid #cbd5e0;
+        border-radius: 4px;
+        margin-top: 0.25rem;
+        max-height: 250px;
+        overflow-y: auto;
+        z-index: 1000;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        display: none;
+    }
+
+    .multiselect-dropdown.active {
+        display: block;
+    }
+
+    .multiselect-option {
+        padding: 0.5rem;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .multiselect-option:hover {
+        background: #f7fafc;
+    }
+
+    .multiselect-option input[type="checkbox"] {
+        margin-right: 0.5rem;
+        width: auto;
+    }
+
+    .table-container {
+        overflow-x: auto;
+    }
+
+    .pagination {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1.5rem;
+    }
+
+    .pagination button {
+        padding: 0.5rem 1rem;
+        border: 1px solid #cbd5e0;
+        background: white;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    .pagination button:hover:not(:disabled) {
+        background: #f7fafc;
+    }
+
+    .pagination button:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    .pagination .page-info {
+        padding: 0 1rem;
+        color: #4a5568;
+    }
+
+    .action-buttons {
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .charts-section {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+        gap: 1.5rem;
+        margin: 2rem 0;
+    }
+
+    .chart-card {
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        padding: 1.5rem;
+    }
+
+    .chart-card h3 {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: #2d3748;
+        font-size: 1.1rem;
+    }
+
+    .chart-container {
+        position: relative;
+        height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .chart-selector {
+        margin-bottom: 1rem;
+        display: flex;
+        gap: 0.5rem;
+    }
+
+    .chart-selector button {
+        padding: 0.4rem 0.8rem;
+        border: 1px solid #cbd5e0;
+        background: white;
+        border-radius: 4px;
+        cursor: pointer;
+        font-size: 0.85rem;
+        transition: all 0.2s;
+    }
+
+    .chart-selector button.active {
+        background: #667eea;
+        color: white;
+        border-color: #667eea;
+    }
+
+    .chart-selector button:hover {
+        border-color: #667eea;
+    }
+
+    .no-data-message {
+        text-align: center;
+        color: #718096;
+        padding: 2rem;
+    }
