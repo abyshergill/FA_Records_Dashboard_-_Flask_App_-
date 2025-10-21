@@ -397,19 +397,19 @@ If you see "database is locked" errors:
 
 ### Port Already in Use
 
-Change the port in `app.py`:
+- Change the port in `app.py`:
 ```python
 app.run(debug=True, port=5001)
 ```
 
 ### Import Errors
 
-Ensure all dependencies are installed:
+- Ensure all dependencies are installed:
 ```bash
 pip install -r requirements.txt
 ```
 
-Create `requirements.txt`:
+- Create `requirements.txt`:
 ```
 Flask==2.3.0
 Flask-SQLAlchemy==3.0.5
