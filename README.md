@@ -2,7 +2,7 @@
 
 A comprehensive web application for managing and analyzing quality control data with public viewing and secure admin management capabilities.
 
-![](assests\dashboard.png)
+![](assests/dashboard.png)
 
 ## ⚠️ **Important**: : 
 - Much of code is specfically `front ends is genrated with AI.` 
@@ -487,4 +487,5 @@ Monitor application health by checking:
 ## Contact
 - For issues or questions about deployment, consult the Flask documentation at https://flask.palletsprojects.com/
 - For contact 
+
     - Email : shergillkuldeep@outlook.com   
