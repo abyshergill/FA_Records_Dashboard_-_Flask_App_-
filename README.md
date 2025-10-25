@@ -2,7 +2,7 @@
 
 A comprehensive web application for managing and analyzing quality control data with public viewing and secure admin management capabilities.
 
-![](assests\dashboard.jpg)
+![](assests\dashboard.png)
 
 ## ⚠️ **Important**: : 
 - Much of code is specfically `front ends is genrated with AI.` 
